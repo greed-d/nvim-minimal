@@ -60,14 +60,14 @@ return {
       end,
       desc = 'Run current file in floating terminal',
     },
-    {
-      '<M-i>',
-      function()
-        require('nvterm.terminal').toggle 'float'
-      end,
-      mode = { 'n', 't' },
-      desc = 'Open floating terminal',
-    },
+    -- {
+    --   '<M-i>',
+    --   function()
+    --     require('nvterm.terminal').toggle 'float'
+    --   end,
+    --   mode = { 'n', 't' },
+    --   desc = 'Open floating terminal',
+    -- },
     {
       '<M-h>',
       function()

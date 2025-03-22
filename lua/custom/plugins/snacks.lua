@@ -7,6 +7,14 @@ return {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
+    terminal = {
+      enabled = true,
+      win = {
+        position = 'float',
+        style = 'terminal',
+      },
+      inteactive = true,
+    },
     bigfile = { enabled = true },
     dashboard = {
       enabled = true,
@@ -63,6 +71,14 @@ return {
         Snacks.explorer()
       end,
       desc = 'File Explorer',
+    },
+    {
+      '<M-i>',
+      function()
+        Snacks.terminal()
+      end,
+      mode = { 'n', 't' },
+      desc = 'Toggle Terminal',
     },
   },
 }
