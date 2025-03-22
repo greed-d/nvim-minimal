@@ -1,8 +1,18 @@
 # Neovim config
 
 
+## 🖼️ Screenshots
 
-## Notable Plugins : 
+### Dashboard : 
+![dashboard](./.screenshots/dashboard.png) 
+
+### Blink :
+![cmp](./.screenshots/cmp.png)
+
+### File Explorer
+![explorer](./.screenshots/explorer.png)
+
+## 💡 Notable Plugins : 
 
 [Barbecue](https://github.com/utilyre/barbecue.nvim) [ VSCode like winbar of neovim ]
 
@@ -17,17 +27,6 @@
 [Oil](https://github.com/stevearc/oil.nvim) [ To edit file tree like buffer ]
 
 [Bufferline](https://github.com/akinsho/bufferline.nvim) [ To view open buffers ]
-
-## :frame_photo: Screenshots
-
-### Dashboard : 
-![dashboard](./.screenshots/dashboard.png) 
-
-### CMP :
-![cmp](./.screenshots/cmp.png)
-
-### File Explorer
-![explorer](./.screenshots/explorer.png)
 
 ## All Plugins
 ```
