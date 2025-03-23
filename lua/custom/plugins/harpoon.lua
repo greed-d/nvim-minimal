@@ -1,14 +1,10 @@
 return {
   'Theprimeagen/harpoon',
   branch = 'harpoon2',
-  config = function()
-    local harpoon = require 'harpoon'
-    harpoon:setup()
-  end,
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     menu = {
-      width = vim.api.nvim_win_get_width(0) - 5,
+      width = vim.api.nvim_win_get_width(0) - 6,
     },
     settings = {
       save_on_toggle = true,
@@ -34,65 +30,27 @@ return {
       },
     }
 
-    for i = 1, 5 do
-      table.insert(keys, {
-        '<leader>' .. i,
-        function()
-          require('harpoon'):list():select(i)
-        end,
-        desc = 'Harpoon to File ' .. i,
-      })
+    local i = { 'j', 'k', 'l', ';', 5, 6, 7, 8, 9 }
+
+    for key, value in ipairs(i) do
+      if key < 5 then
+        table.insert(keys, {
+          '<C-' .. value .. '>',
+          function()
+            require('harpoon'):list():select(key)
+          end,
+          desc = 'Harpoon to File ' .. key,
+        })
+      else
+        table.insert(keys, {
+          '<leader>' .. value,
+          function()
+            require('harpoon'):list():select(key)
+          end,
+          desc = 'Harpoon to File ' .. key,
+        })
+      end
     end
     return keys
   end,
-  -- keys = {
-  --   {
-  --     'mf',
-  --     function() end,
-  --     desc = '[M]ark [F]ile',
-  --   },
-  --   {
-  --     'ml',
-  --     function()
-  --       harpoon.ui:toggle_quick_menu(harpoon:list())
-  --     end,
-  --     desc = '[M]ark [L]ist',
-  --   },
-  --   {
-  --     '<C-j>',
-  --     function()
-  --       require('harpoon.ui').nav_file(1)
-  --     end,
-  --
-  --     desc = 'Move to 1st file in list',
-  --   },
-  --   {
-  --     '<C-k>',
-  --     function()
-  --       require('harpoon.ui').nav_file(2)
-  --     end,
-  --     desc = 'Move to 2nd file in list',
-  --   },
-  --   {
-  --     '<C-l>',
-  --     function()
-  --       require('harpoon.ui').nav_file(3)
-  --     end,
-  --     desc = 'Move to 3rd file in list',
-  --   },
-  --   {
-  --     '<C-h>',
-  --     function()
-  --       require('harpoon.ui').nav_file(4)
-  --     end,
-  --     desc = 'Move to 4th file in list',
-  --   },
-  --   {
-  --     'mt',
-  --     function()
-  --       require('harpoon.ui').nav_file(5)
-  --     end,
-  --     desc = 'Move to 5th file in the list',
-  --   },
-  -- },
 }
