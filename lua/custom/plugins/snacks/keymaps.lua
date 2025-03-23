@@ -1,11 +1,27 @@
 return {
+  -- [[ Buffer Stuff ]]
   {
-    '\\',
+    '<leader>bk',
     function()
-      Snacks.explorer()
+      Snacks.bufdelete()
     end,
-    desc = 'File Explorer',
   },
+  {
+    '<leader>bK',
+    function()
+      Snacks.bufdelete.all()
+    end,
+  },
+  -- [[ Rename Files ]]
+  {
+    '<leader>cR',
+    function()
+      Snacks.rename.rename_file()
+    end,
+    desc = '[C]ode Rename',
+  },
+
+  -- [[ Lazy Git ]]
   {
 
     '<leader>lg',
@@ -14,6 +30,8 @@ return {
     end,
     desc = 'Lazygit',
   },
+
+  -- [[ Notification stuff ]]
   {
     '<leader>na',
     function()
@@ -28,13 +46,17 @@ return {
     end,
     desc = 'Dismiss All Notifications',
   },
+
+  -- [[ File exporer ]]
   {
-    '<leader>fe',
+    '<leader>fm',
     function()
       Snacks.explorer()
     end,
     desc = 'File Explorer',
   },
+
+  -- [[ Terminal ]]
   {
     '<M-i>',
     function()
@@ -43,6 +65,8 @@ return {
     mode = { 'n', 't' },
     desc = 'Toggle Terminal',
   },
+
+  -- [[ Telescope Replacement ]]
   {
     '<leader>sw',
     function()
@@ -80,6 +104,13 @@ return {
     desc = 'Search Help Pages',
   },
   {
+    '<leader>sH',
+    function()
+      Snacks.picker.highlights()
+    end,
+    desc = 'Highlights',
+  },
+  {
     '<leader>sk',
     function()
       Snacks.picker.keymaps()
@@ -100,6 +131,7 @@ return {
     end,
     desc = 'Colorschemes',
   },
+
   -- NOTE: LSP stuff from down here
   {
     'gd',
