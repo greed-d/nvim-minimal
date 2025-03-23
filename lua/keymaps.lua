@@ -40,7 +40,6 @@ map('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'file copy whole' })
 
 -- Buffer Stuff
 map('n', '<leader>bn', '<cmd>enew<CR>', { desc = 'close buffers' })
-map('n', '<leader>bk', '<cmd>bdelete<CR>', { desc = 'close buffers' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
