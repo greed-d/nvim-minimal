@@ -4,32 +4,24 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
     dashboard = require 'custom.plugins.snacks.dashboard',
     indent = require 'custom.plugins.snacks.indent',
     picker = require 'custom.plugins.snacks.picker',
-    terminal = {
-      enabled = true,
-      win = {
-        position = 'float',
-        style = 'terminal',
-      },
-      inteactive = true,
-    },
+    terminal = require 'custom.plugins.snacks.terminal',
+
+    image = { enabled = true },
+    git = { enabled = true },
     bigfile = { enabled = true },
-    explorer = {
-      enabled = true,
-      position = 'right',
-    },
+    explorer = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = false },
-    statuscolumn = { enabled = true },
     words = { enabled = true },
+    bufdelete = { enabled = true },
+
+    dim = { enabled = false },
   },
   keys = require 'custom.plugins.snacks.keymaps',
 }
