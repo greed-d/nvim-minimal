@@ -131,7 +131,13 @@ return {
     end,
     desc = 'Colorschemes',
   },
-
+  {
+    '<leader>sp',
+    function()
+      Snacks.picker.projects()
+    end,
+    desc = 'Projects',
+  },
   -- NOTE: LSP stuff from down here
   {
     'gd',
@@ -160,6 +166,7 @@ return {
     function()
       Snacks.picker.lsp_implementations()
     end,
+
     desc = 'Goto Implementation',
   },
   {
@@ -178,6 +185,7 @@ return {
   },
   {
     '<leader>ws',
+
     function()
       Snacks.picker.lsp_workspace_symbols()
     end,
