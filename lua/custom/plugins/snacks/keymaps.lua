@@ -1,5 +1,6 @@
 return {
-  -- [[ Buffer Stuff ]]
+
+  -- NOTE: [[ Buffer Stuff ]]
   {
     '<leader>bk',
     function()
@@ -12,7 +13,8 @@ return {
       Snacks.bufdelete.all()
     end,
   },
-  -- [[ Rename Files ]]
+
+  -- NOTE: [[ Rename Files ]]
   {
     '<leader>cR',
     function()
@@ -21,7 +23,7 @@ return {
     desc = '[C]ode Rename',
   },
 
-  -- [[ Lazy Git ]]
+  -- NOTE: [[ Lazy Git ]]
   {
 
     '<leader>lg',
@@ -31,7 +33,23 @@ return {
     desc = 'Lazygit',
   },
 
-  -- [[ Notification stuff ]]
+  -- NOTE: [[ Git Stuff ]]
+  {
+    'gX',
+    function()
+      Snacks.gitbrowse()
+    end,
+    desc = 'Open remote url',
+  },
+  {
+    'gb',
+    function()
+      Snacks.git.blame_line()
+    end,
+    desc = 'Git: Blame Line',
+  },
+
+  -- NOTE: [[ Notification stuff ]]
   {
     '<leader>na',
     function()
@@ -47,16 +65,23 @@ return {
     desc = 'Dismiss All Notifications',
   },
 
-  -- [[ File exporer ]]
+  -- NOTE: [[ File explorer ]]
+  -- FIXME: Some refinement needed
   {
-    '<leader>fm',
+    '\\',
     function()
-      Snacks.explorer()
+      if Snacks.picker.get({ source = 'explorer' })[1] == nil then
+        Snacks.picker.explorer()
+      elseif Snacks.picker.get({ source = 'explorer' })[1]:is_focused() == true then
+        Snacks.picker.explorer()
+      elseif Snacks.picker.get({ source = 'explorer' })[1]:is_focused() == false then
+        Snacks.picker.get({ source = 'explorer' })[1]:focus()
+      end
     end,
     desc = 'File Explorer',
   },
 
-  -- [[ Terminal ]]
+  -- NOTE: [[ Terminal ]]
   {
     '<M-i>',
     function()
@@ -66,7 +91,7 @@ return {
     desc = 'Toggle Terminal',
   },
 
-  -- [[ Telescope Replacement ]]
+  -- NOTE: [[ Telescope Replacement ]]
   {
     '<leader>sw',
     function()
@@ -95,6 +120,13 @@ return {
       Snacks.picker.files()
     end,
     desc = 'Find Files',
+  },
+  {
+    '<leader>ss',
+    function()
+      Snacks.picker.pickers()
+    end,
+    desc = 'Pick Pickers',
   },
   {
     '<leader>sh',
@@ -138,6 +170,23 @@ return {
     end,
     desc = 'Projects',
   },
+
+  -- NOTE: [[ TODO Comments ]]
+  {
+    '<leader>st',
+    function()
+      Snacks.picker.todo_comments()
+    end,
+    desc = 'Todo',
+  },
+  {
+    '<leader>sT',
+    function()
+      Snacks.picker.todo_comments { keywords = { 'TODO', 'FIX', 'FIXME' } }
+    end,
+    desc = 'Todo/Fix/Fixme',
+  },
+
   -- NOTE: LSP stuff from down here
   {
     'gd',
@@ -185,7 +234,6 @@ return {
   },
   {
     '<leader>ws',
-
     function()
       Snacks.picker.lsp_workspace_symbols()
     end,
