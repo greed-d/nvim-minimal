@@ -57,6 +57,7 @@ return {
       -- Remove 'buffer' if you don't want text completions, by default it's only enabled when LSP returns no items
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
+    -- signature = { enabled = true },
 
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
