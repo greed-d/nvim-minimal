@@ -1,5 +1,4 @@
 return {
-
   { -- Linting
     'mfussenegger/nvim-lint',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -7,6 +6,8 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
+        typescript = { 'eslint_d' },
+        -- python = { 'ruff' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -19,6 +20,7 @@ return {
       -- {
       --   clojure = { "clj-kondo" },
       --   dockerfile = { "hadolint" },
+      --   typescript = { 'eslint_d'}
       --   inko = { "inko" },
       --   janet = { "janet" },
       --   json = { "jsonlint" },

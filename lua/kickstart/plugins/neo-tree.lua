@@ -3,6 +3,7 @@
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
+  enabled = false,
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -12,7 +13,7 @@ return {
   cmd = 'Neotree',
   keys = {
 
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    -- { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
     sources = { 'filesystem', 'buffers', 'git_status' },
