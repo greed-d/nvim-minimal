@@ -10,7 +10,6 @@ return {
       save_on_toggle = true,
     },
   },
-  -- event = 'BufRead',
   keys = function()
     local keys = {
       {
