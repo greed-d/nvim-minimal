@@ -6,10 +6,19 @@ local o = vim.opt
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.opt_local.formatoptions:remove { 'r', 'o', 'c' } -- Stop neovim from adding comments to new line
+o.formatoptions:remove { 'r', 'o', 'c' } -- Stop neovim from adding comments to new line
+
+-- [[ UFO stuff ]]
+o.foldcolumn = 'auto:9' -- '0' is not bad
+o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+o.foldlevelstart = 99
+o.foldenable = true
+
+o.winborder = 'rounded'
 
 -- Make line numbers default
 o.number = true
+
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 o.relativenumber = true

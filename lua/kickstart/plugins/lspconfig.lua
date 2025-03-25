@@ -1,25 +1,15 @@
 -- LSP Plugins
 return {
   {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
-  {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
+
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
       { 'williamboman/mason.nvim', opts = {} },
+
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -59,14 +49,10 @@ return {
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-        -- Use a sharp border with `FloatBorder` highlights
-        border = 'rounded',
-      })
 
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = 'rounded',
-      })
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover { border = 'rounded' }
+      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help { border = 'rounded' }
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -187,6 +173,7 @@ return {
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
+        jump = { float = true },
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
@@ -230,10 +217,17 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
+
+        -- [[ Javascript/Typescript ]]
+        prettierd = {},
+        vtsls = {},
+        eslint_d = {},
+
+        -- [[ Bash ]]
         bashls = {},
         shfmt = {},
+
+        -- [[ Python]]
         pyright = {
           settings = {
             python = {
@@ -242,30 +236,10 @@ return {
               },
             },
           },
-          commands = {
-            PyrightOrganizeImports = {
-              organize_imports,
-              description = 'Organize Imports',
-            },
-            PyrightSetPythonPath = {
-              set_python_path,
-              description = 'Reconfigure pyright with the provided python path',
-              nargs = 1,
-              complete = 'file',
-            },
-          },
         },
         ruff = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
 
+        -- [[ Lua ]]
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -280,6 +254,20 @@ return {
             },
           },
         },
+
+        -- [[ More stuff ]]
+
+        -- clangd = {},
+        -- gopls = {},
+        -- rust_analyzer = {},
+        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+        --
+        -- Some languages (like typescript) have entire language plugins that can be useful:
+        --    https://github.com/pmizio/typescript-tools.nvim
+        --
+        -- But for many setups, the LSP (`ts_ls`) will work just fine
+        -- ts_ls = {},
+        --
       }
 
       -- Ensure the servers and tools above are installed
