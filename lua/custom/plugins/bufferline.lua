@@ -31,13 +31,13 @@ return {
   end,
   keys = {
     {
-      '<Tab>',
+      ']b',
       ':BufferLineCycleNext<CR>',
       desc = 'Next buffer',
       silent = true,
     },
     {
-      '<S-Tab>',
+      '[b',
       ':BufferLineCyclePrev<CR>',
       desc = 'Next buffer',
       silent = true,
