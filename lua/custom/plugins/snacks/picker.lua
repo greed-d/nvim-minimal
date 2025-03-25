@@ -3,7 +3,11 @@ return {
   exclude = { 'venv', 'node_modules' },
   sources = {
     explorer = {
-      layout = { layout = { position = 'right' } },
+      layout = {
+        layout = {
+          position = 'right',
+        },
+      },
     },
   },
 }
