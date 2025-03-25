@@ -9,7 +9,12 @@ return {
     char = '▏',
   },
   animate = {
-    enabled = false,
+    enabled = vim.fn.has 'nvim-0.10' == 1,
+    style = 'up_down',
+    duration = {
+      step = 20,
+      total = 500,
+    },
   },
   filter = function(buf)
     local b = vim.b[buf]
