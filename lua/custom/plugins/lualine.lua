@@ -34,23 +34,23 @@ return {
         { 'fancy_mode', separator = { left = '', right = '' }, right_padding = 2 },
       },
       lualine_b = {
-        function()
-          local file = vim.fn.expand '%:t'
-          local extension = vim.fn.expand '%:e'
-          local icon = require('DaikyXendo/nvim-material-icon').get_icon(file, extension)
-          return icon .. ' ' .. file
-        end,
-        -- separator = { left = '', right = ''}
+        { 'fancy_branch', icon = '', separator = { left = '', right = '' } },
       },
       lualine_c = {
-        { 'fancy_branch', icon = '' },
         {
           'fancy_diff',
           symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
           colored = true,
         },
+        { 'fancy_searchcount' },
       },
       lualine_x = {
+        { 'fancy_macro', fg = '#474853', bg = '#ee6d85', separator = { left = '', right = '' } },
+
+        {
+          'fancy_location',
+          separator = { left = '' },
+        },
         {
           'fancy_diagnostics',
           -- diagnostics_color = {
@@ -58,16 +58,10 @@ return {
           -- },
           symbols = { error = ' ', warn = ' ', info = '󰋼 ', hint = '󰛩 ' },
         },
-        { 'fancy_lsp_servers' },
       },
       lualine_y = {
-        { 'fancy_macro', fg = '#474853', bg = '#ee6d85', separator = { left = '', right = '' } },
+        { 'fancy_lsp_servers', separator = { left = '' } },
 
-        { 'fancy_searchcount', separator = { left = '', right = '' } },
-        {
-          'fancy_location',
-          separator = { left = '' },
-        },
         -- separator = { left = ''}
       },
       lualine_z = {
