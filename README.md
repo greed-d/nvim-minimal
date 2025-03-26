@@ -56,7 +56,7 @@ NVIM_APPNAME=nvimin nvim
 
 [Harpoon](https://github.com/Theprimeagen/harpoon) [ To jump between files in open workspaces ] 
 
-[Lualine](https://github.com/nvim-lualine/lualine.nvim) [ For pretty lualine (Depends on [Lualine so Fancy](https://github.com/greed-d/lualine-so-fancy)) ] 
+[Lualine](https://github.com/nvim-lualine/lualine.nvim) [ For pretty lualine (Depends on [Lualine so Fancy](https://github.com/greed-d/lualine-so-fancy.nvim)) ] 
 
 [NvTerm](https://github.com/NvChad/nvterm) [ For terminals ]
 
