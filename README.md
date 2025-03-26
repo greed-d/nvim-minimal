@@ -1,5 +1,10 @@
 # Neovim config
 
+## What is this project?
+Kickstart's design philosophy is to give a very barebones starting point but have you ever felt like, having a system that is both barebones and jazzy?
+
+This here is a very opinionated setup for kickstart, that adds prettier UI without sacrificing the lightweight nature of kickstart just clone, delete `.git` and you're good to go
+
 
 ## 🖼️ Screenshots
 
@@ -20,7 +25,7 @@
 
 [Harpoon](https://github.com/Theprimeagen/harpoon) [ To jump between files in open workspaces ] 
 
-[Lualine](https://github.com/nvim-lualine/lualine.nvim) [ For pretty lualine (Depends on [Lualine so Fancy](https://github.com/greeid/lualine-so-fancy)) ] 
+[Lualine](https://github.com/nvim-lualine/lualine.nvim) [ For pretty lualine (Depends on [Lualine so Fancy](https://github.com/greed-d/lualine-so-fancy)) ] 
 
 [NvTerm](https://github.com/NvChad/nvterm) [ For terminals ]
 
