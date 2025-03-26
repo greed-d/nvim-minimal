@@ -5,12 +5,43 @@ Kickstart's design philosophy is to give a very barebones starting point but hav
 
 This here is a very opinionated setup for kickstart, that adds prettier UI without sacrificing the lightweight nature of kickstart just clone, delete `.git` and you're good to go
 
+## How to install:
+This guide here assumes that you've got neovim installed, check your OS/distro instruction on how to install it.
+
+> [!NOTE]  
+> This repo is a testing ground and prone to changes.
+
+### Installing as your basic config:
+
+#### Prepare for installation: 
+```bash
+# Install neovim ( e.g.: arch )
+sudo pacman -S neovim
+
+# remove or backup your previous config
+mv ~/.config/nvim ~/.config/nvim.bak
+
+# remove cached stuff
+rm -rf ~/.local/state/nvim/ && rm -rf ~/.local/share/nvim/
+```
+#### Clone the repo (linux distros) : 
+```bash
+git clone https://github.com/greed-d/nvim-minimal ~/.config/nvim && nvim
+```
+
+### Installing as secondary config:
+Neovim provides a feature called `NVIM_APPNAME` which can help you run different instances of neovim with different configs. You can use it like
+
+#### Clone the repo and launch using `NVIM_APPNAME`:
+```bash
+git clone https://github.com/greed-d/nvim-minimal ~/.config/nvimin
+NVIM_APPNAME=nvimin nvim
+```
 
 ## 🖼️ Screenshots
 
 ### Dashboard : 
 ![dashboard](./.screenshots/dashboard.png) 
-
 ### Blink :
 ![cmp](./.screenshots/cmp.png)
 
