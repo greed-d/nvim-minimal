@@ -14,7 +14,9 @@ o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease
 o.foldlevelstart = 99
 o.foldenable = true
 
-o.winborder = 'rounded'
+if vim.fn.has 'nvim-0.11' == 1 then
+  o.winborder = 'rounded'
+end
 
 -- Make line numbers default
 o.number = true
