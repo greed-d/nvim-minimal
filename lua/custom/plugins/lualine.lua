@@ -6,6 +6,7 @@ return {
     'greed-d/lualine-so-fancy.nvim',
   },
   event = 'VeryLazy',
+  enabled = true,
   init = function()
     vim.g.lualine_laststatus = vim.o.laststatus
     if vim.fn.argc(-1) > 0 then
@@ -21,7 +22,7 @@ return {
   -- end
   opts = {
     options = {
-      theme = 'catppuccin-mocha',
+      theme = 'tokyonight',
       component_separators = { right = '', left = '' },
       section_separators = { right = '', left = '' },
       globalstatus = true,
@@ -39,7 +40,11 @@ return {
       lualine_c = {
         {
           'fancy_diff',
-          symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
+          symbols = {
+            added = ' ',
+            modified = ' ',
+            removed = ' ',
+          }, -- Changes the symbols used by the diff.
           colored = true,
         },
         { 'fancy_searchcount' },
@@ -72,6 +77,32 @@ return {
         --   return '󰉖 ' .. (cwd:match '([^/\\]+)[/\\]*$' or cwd)
         -- end,
       },
+    },
+    extensions = {
+      'oil',
+      'neo-tree',
+      'lazy',
+      'overseer',
+      'mason',
+      'man',
+      -- require('custom.plugins.snacks.lualine').lualine_custom,
+      'trouble',
+      {
+        sections = {
+          lualine_a = {
+            function()
+              return ' Lazygit'
+            end,
+          },
+          lualine_b = { 'branch' },
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {},
+        },
+        filetypes = { 'lazygit' },
+      },
+      require 'custom.plugins.snacks.lualine',
     },
   },
 }

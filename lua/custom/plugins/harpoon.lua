@@ -1,6 +1,10 @@
 return {
   'Theprimeagen/harpoon',
   branch = 'harpoon2',
+  config = function()
+    local harpoon = require 'harpoon'
+    harpoon:setup()
+  end,
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     menu = {
@@ -10,28 +14,29 @@ return {
       save_on_toggle = true,
     },
   },
+  -- event = 'BufRead',
   keys = function()
     local keys = {
       {
-        '<leader>H',
+        'mf',
         function()
           require('harpoon'):list():add()
         end,
-        desc = 'Harpoon File',
+        desc = '[M]ark [F]ile to harpoon',
       },
       {
-        '<leader>h',
+        'ml',
         function()
           local harpoon = require 'harpoon'
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
-        desc = 'Harpoon Quick Menu',
+        desc = '[M]ark [L]ist',
       },
     }
-
     local i = { 'j', 'k', 'l', ';', 5, 6, 7, 8, 9 }
 
     for key, value in ipairs(i) do
+      -- NOTE: Instead of using <C-j,k,l> etc. to switch between window, we're using it to jump around harpoon marks
       if key < 5 then
         table.insert(keys, {
           '<C-' .. value .. '>',
@@ -41,6 +46,7 @@ return {
           desc = 'Harpoon to File ' .. key,
         })
       else
+        -- If your haproon list is longer than 4 use `<leader>mark_no`
         table.insert(keys, {
           '<leader>' .. value,
           function()

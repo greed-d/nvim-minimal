@@ -15,30 +15,39 @@ map('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
 -- Code Stuff
 map('n', '<leader>co', ':PyrightOrganizeImports<CR>', { desc = 'Organize Imports for python file', silent = true })
+vim.keymap.set('n', '<leader>k', function()
+  vim.diagnostic.config { virtual_lines = { current_line = true }, virtual_text = false }
 
+  vim.api.nvim_create_autocmd('CursorMoved', {
+    group = vim.api.nvim_create_augroup('line-diagnostics', { clear = true }),
+    callback = function()
+      vim.diagnostic.config { virtual_lines = false, virtual_text = true }
+      return true
+    end,
+  })
+end)
 -- Use Alt-. or Alt-, to change size of window
 map({ 'n', 'v', 't', 'x' }, '<A-,>', '<C-w><', { desc = 'Decrease window size' })
 map({ 'n', 'v', 't', 'x' }, '<A-.>', '<C-w>>', { desc = 'Move indent left once' })
+map({ 'i', 's' }, '<C-k>', function()
+  vim.lsp.buf.hover { border = 'rounded' }
+end)
 
 -- use gj and gk to wrap around lines
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 -- Diagnostic keymaps
+vim.keymap.set('i', '<M-l>', function()
+  vim.lsp.buf.signature_help { border = 'rounded' }
+end, { buffer = bufnr })
 
--- vim.keymap.set('n', '[d', function()
---   vim.diagnostic.jump { count = -1, float = true }
--- end, { desc = 'Go to previous [D]iagnostic message' })
---
--- vim.keymap.set('n', ']d', function()
---   vim.diagnostic.jump { count = 1, float = true }
--- end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Useful everyday keybinds
 map('x', 'p', 'p:let @"=@0<CR>', { silent = true })
+map('n', '<S-CR>', 'O<Esc>', { desc = 'Add new line above' })
 map('n', '<CR>', 'o<Esc>', { desc = 'Add new line below' })
-map('n', '<S-CR>', 'O<Esc>', { desc = 'Add new line below' })
 map('n', '<C-s>', '<cmd>w<CR>', { desc = 'file save' })
 map('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'file copy whole' })
 -- map('n', '<C-d>', '<C-d>zz', { desc = 'bring screen to middle' })
@@ -54,6 +63,9 @@ map('n', '<leader>bn', '<cmd>enew<CR>', { desc = 'close buffers' })
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 map('t', '<C-x>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+map('n', 'K', function()
+  vim.lsp.buf.hover { border = 'rounded' }
+end, { desc = 'hover on' })
 
 -- TIP: Disable arrow keys in normal mode
 -- map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -86,4 +98,35 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- open virtual lines when jumping diagnostics
+---@param jumpCount number
+-- local function jumpWithVirtLineDiags(jumpCount)
+--   pcall(vim.api.nvim_del_augroup_by_name, 'jumpWithVirtLineDiags') -- prevent autocmd for repeated jumps
+--
+--   vim.diagnostic.jump { count = jumpCount }
+--
+--   local initialVirtTextConf = vim.diagnostic.config().virtual_text
+--   vim.diagnostic.config {
+--     virtual_text = false,
+--     virtual_lines = { current_line = true },
+--   }
+--
+--   vim.defer_fn(function() -- deferred to not trigger by jump itself
+--     vim.api.nvim_create_autocmd('CursorMoved', {
+--       desc = 'User(once): Reset diagnostics virtual lines',
+--       once = true,
+--       group = vim.api.nvim_create_augroup('jumpWithVirtLineDiags', {}),
+--       callback = function()
+--         vim.diagnostic.config { virtual_lines = false, virtual_text = initialVirtTextConf }
+--       end,
+--     })
+--   end, 1)
+-- end
+--
+-- vim.keymap.set('n', ']d', function()
+--   jumpWithVirtLineDiags(1)
+-- end, { desc = '󰒕 Next diagnostic' })
+-- vim.keymap.set('n', '[d]', function()
+--   jumpWithVirtLineDiags(-1)
+-- end, { desc = '󰒕 Prev diagnostic' })
 -- vim: ts=2 sts=2 sw=2 et

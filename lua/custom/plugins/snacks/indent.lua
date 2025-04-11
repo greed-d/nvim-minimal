@@ -16,6 +16,10 @@ return {
       total = 500,
     },
   },
+  chunk = {
+    enabled = true,
+  },
+
   filter = function(buf)
     local b = vim.b[buf]
     local bo = vim.bo[buf]

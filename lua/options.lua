@@ -8,14 +8,15 @@ vim.g.loaded_netrwPlugin = 1
 
 o.formatoptions:remove { 'r', 'o', 'c' } -- Stop neovim from adding comments to new line
 
--- [[ UFO stuff ]]
-o.foldcolumn = 'auto:9' -- '0' is not bad
-o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-o.foldlevelstart = 99
-o.foldenable = true
+-- For fold stuff
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldtext = ''
+vim.opt.foldcolumn = '0'
+vim.opt.fillchars:append { fold = ' ' }
 
 if vim.fn.has 'nvim-0.11' == 1 then
-  o.winborder = 'rounded'
+  o.winborder = 'rounded' -- Availabe are "single", "double", "rounded", "solid"
 end
 
 -- Make line numbers default

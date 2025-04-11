@@ -50,8 +50,8 @@ return {
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
 
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover { border = 'rounded' }
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help { border = 'rounded' }
+      -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover { border = 'rounded' }
+      -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help { border = 'rounded' }
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -173,8 +173,10 @@ return {
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
-        jump = { float = true },
+        -- jump = { float = true },
+        virtual_lines = { current_line = true },
         severity_sort = true,
+        update_in_insert = false,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
@@ -228,11 +230,12 @@ return {
         shfmt = {},
 
         -- [[ Python]]
-        pyright = {
+        basedpyright = {
           settings = {
-            python = {
+            basedpyright = {
+              disableOrganizeImports = true,
               analysis = {
-                ignore = { '*' }, -- Using Ruff
+                ignore = { 'warning' },
               },
             },
           },

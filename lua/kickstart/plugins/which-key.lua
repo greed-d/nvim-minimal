@@ -66,6 +66,7 @@ return {
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>n', group = '[N]otifications' },
         { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
       },
     },
